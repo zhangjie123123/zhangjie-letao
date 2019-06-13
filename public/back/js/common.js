@@ -17,3 +17,4 @@ $(document).ajaxStop(function () {//全局注册一个ajax开始的事件
       NProgress.done();
   },5000);
 });
+
