@@ -38,4 +38,46 @@ $(function () {
             }
         });
     }
+
+    //2.点击添加分类按钮，显示添加模态框
+    $("#addBtn").click(function () {
+        $('#addModal').modal("show");
+        //发送ajax请求 ，获取一级分类全部数据，通过模板引擎渲染
+        $.ajax({
+           type:"get",
+            url:"/category/queryTopCategoryPaging",
+            data:{
+                page:1,
+                pageSize:100
+            },
+            dataType:"json",
+            success:function (info) {
+                console.log(info);
+                var htmlStr=template("dropdownTpl",info);
+                $(".dropdown-menu").html(htmlStr);
+            }
+        });
+    });
+    //3.通过事件委托， 绑定事件
+    $('.dropdown-menu').on("click","a",function () {
+        //获取文本
+        var txt=$(this).text();
+        $("#dropdownText").text(txt);
+        //获取选中的id
+        var id =$(this).data("id");
+        //将id设置给input
+        $("[name='categoryId']").val(id);
+    });
+
+    //4.利用插件进行文件上传初始化
+    $("#fileupload").fileupload({
+        dataType:"json",
+        //图片上传完成后会调用回调函数
+        done:function (e,data) {
+            console.log();
+            var imgUrl=data.result.picAddr
+            $("#imgBox img").attr("src",imgUrl);
+            $('[name="brandLogo"]').val(imgUrl);
+        }
+    });
 });
