@@ -99,6 +99,24 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!--禁用的模态框-->
+<div class="modal fade" tabindex="-1"  id="userModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+                <p class="red"><i class="glyphicon glyphicon-info-sign"></i>确定执行次操作吗？？？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submitBtn">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script type="text/html" id="tpl">
     {{each rows v i}}
@@ -108,7 +126,7 @@
         <td>{{v.mobile}}</td>
         <td>{{v.isDelete === 1? "正常":"禁用"}}</td>
         {{if v.isDelete ===1}}
-        <td><button class="btn btn-danger">禁用</button></td>
+        <td data-id="{{v.id}}"><button class="btn btn-danger">禁用</button></td>
         {{/if}}
         {{if v.isDelete ===0}}
         <td><button class="btn btn-success">启用</button></td>

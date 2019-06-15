@@ -6,7 +6,8 @@ $(function () {
     //定义全局变量
     var currentPage = 1;
     var pageSize=5;
-
+    var currentId;//声明一个全局id变量
+    var isDelete;//声明一个全局的变量
     render();
     //封装ajax请求
     function render(){
@@ -46,6 +47,36 @@ $(function () {
         });
 
     }
+//点击禁用 显示模态框
+    //通过事件委托注册点击事件
 
+    $("tbody").on("click",".btn",function () {
+        //显示模态框
+        $("#userModal").modal("show");
+        //获取用户id
+        currentId=$(this).parent().data("id");//获取到的属性
+        isDelete=$(this).hasClass("btn-danger")?0:1;
+    });
 
+    //3.点击确认修改对应的用户状态
+    $("#submitBtn").click(function () {
+        $.ajax({
+            type:"post",
+            url:"/user/updateUser",
+            data:{
+                id:currentId,
+                isDelete:isDelete
+            },
+            dataType:"json",
+            success:function (info) {
+                //1,关闭模态框
+                //2,页面重新渲染
+                if(info.success){
+                    $("#userModal").modal("hide");
+                    render();
+                }
+
+            }
+        })
+    });
 });
