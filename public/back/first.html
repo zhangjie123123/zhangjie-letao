@@ -53,7 +53,7 @@
             <li><a href="#">一级分类</a></li>
         </ol>
         <div class="lt_content">
-            <button class="btn btn-default mb_20" style="margin-bottom: 20px">添加分类</button>
+            <button class="btn btn-default mb_20" style="margin-bottom: 20px" id="addBtn">添加分类</button>
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -91,6 +91,34 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
             </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--模态框-->
+<div class="modal fade" tabindex="-1"  id="addModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form id="form">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加分类</h4>
+            </div>
+            <div class="modal-body">
+              <!--表单模板-->
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="categoryName"  placeholder="请输入一级分类">
+                    </div>
+
+                <!--表单模板-->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" >添加</button>
+            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
