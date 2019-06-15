@@ -23,8 +23,8 @@
             <li ><a href="user.html" class=""><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
             <li><a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
                 <div class="child" >
-                    <a href="first.html"  >一级分类</a>
-                    <a href="second.html" class="current">二级分类</a>
+                    <a href="first.html" >一级分类</a>
+                    <a href="second.html "  class="current">二级分类</a>
                 </div>
             </li>
             <li><a href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a></li>
@@ -50,8 +50,31 @@
         <ol class="breadcrumb mt_20">
             <li><a href="index.html">管理系统</a></li>
             <li><a href="#">分类管理</a></li>
-            <li><a href="#">二级分类</a></li>
+            <li><a href="#">一级分类</a></li>
         </ol>
+        <div class="lt_content">
+            <button class="btn btn-default mb_20" style="margin-bottom: 20px" id="addBtn">添加分类</button>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="10%">序号</th>
+                    <th width="30%">一级分类</th>
+                    <th width="30%">二级分类</th>
+                    <th width="30%">二级分类LOGO</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <!--准备分页容器-->
+            <div class="text-right">
+                <ul id="paginator">
+                </ul>
+
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -74,11 +97,54 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!--模态框-->
+<div class="modal fade" tabindex="-1"  id="addModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form id="form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                    <!--表单模板-->
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="categoryName"  placeholder="请输入一级分类">
+                    </div>
+
+                    <!--表单模板-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" >添加</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--准备模板-->
+<script type="text/html" id="cecondTpl">
+
+    <!--模板渲染-->
+    {{each rows v i}}
+    <tr>
+        <td>{{i+1+(page-1)*size}}</td>
+        <td>{{v.categoryName}}</td>
+        <td>{{v.brandName}}</td>
+        <td><img src="{{v.brandLogo}}" height="50" alt=""></td>
+    </tr>
+    {{/each}}
+</script>
 
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./js/common.js"></script>
+<script src="./js/second.js"></script>
 </body>
 </html>

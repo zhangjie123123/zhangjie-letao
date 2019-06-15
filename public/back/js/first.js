@@ -70,7 +70,7 @@ $(function () {
             data:$('#form').serialize(),//自动表单序列化
             dataType:"json",
             success:function (info) {
-                console.log(info.success);
+                // console.log(info.success);
                 if(info.success){
                     //添加成
                     //1.关闭模态框

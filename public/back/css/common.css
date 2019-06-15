@@ -113,6 +113,7 @@ ul{
     top:0;
     padding-left: 180px;
     transition: all 1s;
+    z-index: 666;
 }
 .lt_topbar a {
     width: 50px;
