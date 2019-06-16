@@ -67,6 +67,8 @@ $(function () {
         var id =$(this).data("id");
         //将id设置给input
         $("[name='categoryId']").val(id);
+        //将隐藏域效验状态
+        $("#form").data("bootstrapValidator").updateStatus("categoryId","VALID");
     });
 
     //4.利用插件进行文件上传初始化
@@ -78,6 +80,72 @@ $(function () {
             var imgUrl=data.result.picAddr
             $("#imgBox img").attr("src",imgUrl);
             $('[name="brandLogo"]').val(imgUrl);
+            $("#form").data("bootstrapValidator").updateStatus("brandLogo","VALID");
         }
     });
+    //5.实现表单效验
+    $("form").bootstrapValidator({
+        //1.指定不效验的类型":disabled",":hidden",":not(:visible)"
+        excluded:[],
+        //配置效验图标
+        feedbackIcons:{
+            valid:"glyphicon glyphicon-ok",
+            invalid:"glyphicon glyphicon-remove",
+            validating:"glyphicon glyphicon-refresh"
+        },
+        //配置字段
+        fields:{
+            categoryId:{
+                validators:{
+                    notEmpty:{
+                        message:"请选择一级分类"
+                    }
+                }
+            },
+            brandName:{
+                validators:{
+                    notEmpty:{
+                        message:"请选择二级分类"
+                    }
+                }
+            },
+            brandLogo:{
+                validators:{
+                    notEmpty:{
+                        message:"请选择图片"
+                    }
+                }
+            }
+        }
+    });
+
+    //6.注册表单效验成功事件，阻止默认提交，
+    $("#form").on("success.form.bv",function (e) {
+        //阻止跳转事件
+        e.preventDefault();
+        //通过ajax提交
+        $.ajax({
+           type:"post",
+            url:"/category/addSecondCategory",
+            data:$('#form').serialize(),//表单序列化
+            dataType:"json",
+            success:function (info) {
+                console.log(info);
+                if(info.success){
+                    //1.关闭模态框
+                    $('#addModal').modal('hide');
+                    //2.重新渲染页面
+                    currentPage=1;
+                    render();
+                    $('#form').data("bootstrapValidator").resetForm(true);//重置表单内容
+
+                    //手动重置文本内容
+                    $('#dropdownText').text("请选择一级分类");
+                    //手动重置图片
+                    $('#imgBox img').attr("src","images/none.png");
+                }
+            }
+
+        });
+    })
 });
