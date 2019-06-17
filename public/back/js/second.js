@@ -77,7 +77,7 @@ $(function () {
         //图片上传完成后会调用回调函数
         done:function (e,data) {
             console.log();
-            var imgUrl=data.result.picAddr
+            var imgUrl=data.result.picAddr;
             $("#imgBox img").attr("src",imgUrl);
             $('[name="brandLogo"]').val(imgUrl);
             $("#form").data("bootstrapValidator").updateStatus("brandLogo","VALID");
