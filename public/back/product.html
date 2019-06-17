@@ -123,7 +123,8 @@
                         </div>
                         <!--隐藏id d 隐藏域-->
                         <input type="hidden" name="brandId">
-
+                        <!--产品上下架，值为1-->
+                        <input type="hidden" name="statu">
                     </div>
                     <!--配置的模态框-->
                     <!--商品名称-->
@@ -152,13 +153,14 @@
                         <input type="text" class="form-control" name="price"  placeholder="请输入商品现价">
                     </div>
                     <div class="form-group">
-                        <label class="btn btn-default" for="fileupload">上传图片 </label>
-                        <input type="file" id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic" style="display: none">
+                        <label class="btn btn-default"  for="fileupload">上传图片 </label>
+                        <input type="file" id="fileupload" multiple name="pic1"  data-url="/product/addProductPic" style="display: none">
                     </div>
                     <div class="form-group" id="imgBox">
-                        <img src="./images/none.png" width="100" alt="">
-                        <img src="./images/none.png" width="100" alt="">
-                        <img src="./images/none.png" width="100" alt="">
+                        <!--用于标记图片上传的状态-->
+                        <input type="hidden" name="picStatus">
+                        <!--<img src="./images/none.png" width="100" alt="">-->
+                        <!--<img src="./images/none.png" width="100" alt="">-->
 
 
                     </div>
