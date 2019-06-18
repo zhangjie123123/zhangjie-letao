@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//获取地址栏参数
+   function getSeach(k) {
+       var search=location.search;
+       //中文需要需要转码
+       search = decodeURI( search);
+//去掉?号
+       //去处第一个？号
+       search=search.slice(1);
+       //通过分割获取数组
+       var arr= search.split("&");
+       var obj={};
+       arr.forEach(function (v,i) {
+           var key=v.split("=")[0];
+           var value=v.split("=")[1];
+           obj[key]=value;
+       });
+       return obj[k];
+   }
+//        console.log(getSeach("password"));
+
+</script>
+</body>
+</html>

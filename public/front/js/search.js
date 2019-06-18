@@ -89,6 +89,8 @@ $(function () {
         render();
         //清空
         $(".search_input").val("");
+        //添加跳转到产品列表页
+        location.href="searchList.html?key="+key;
     })
 
 });
