@@ -69,6 +69,7 @@ $(function () {
         var key=$(".search_input").val().trim();
         if(key === ''){
             // 不做任何炒作
+            mui.toast("请输入关键子");
             return;
         }
 
