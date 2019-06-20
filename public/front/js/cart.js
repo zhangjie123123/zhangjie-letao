@@ -65,6 +65,44 @@ function render() {
             }
 
         })
-    })
+    });
+
+//    4.编辑功能
+
+    $('.lt_main').on("tap",".btn_edit",function () {
+        var obj =this.dataset;
+        var id=obj.id;
+        var htmlStr = template("editTpl",obj);
+        //弹出确认框
+        htmlStr =htmlStr.replace(/\n/g,"");
+        mui.confirm(htmlStr,"编辑商品",["确认","取消"],function (e) {
+            if(e.index === 0){
+                var size =$('.lt_size span.current').text();
+                var num = $('.mui-numbox-input').val();
+                $.ajax({
+                    type:"post",
+                    url:"/cart/updateCart",
+                    data:{
+                        id:id,
+                        size:size,
+                        num:num
+                    },
+                    dataType:"json",
+                    success:function (info) {
+                        console.log(info);
+                        if(info.success){
+                            mui(".mui-scroll-wrapper").pullRefresh().pulldownLoading();
+                        }
+                    }
+                })
+            }
+        });
+        mui(".mui-numbox").numbox()
+    });
+
+    //5.让尺码可以被选择
+    $('body').on("click",".lt_size span",function () {
+        $(this).addClass("current").siblings().removeClass("current");
+    });
 
 });

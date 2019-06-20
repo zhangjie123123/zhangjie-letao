@@ -11,17 +11,12 @@
     font-size: 12px;
     color: #666;
 }
-.lt_size span{
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-    border: 1px solid #ccc;
-    display: inline-block;
-    font-size: 12px;
-    margin:  3px 3px;
 
-}
+
+
+
+
+
 .lt_num .last{
     font-size: 12px;
     color: #666;
@@ -39,8 +34,4 @@
 }
 .lt_go_cart a {
     padding: 5px;
-}
-.lt_size span.current {
-    background-color: orange;
-    color: #EFEFF4;
 }
